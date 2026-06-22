@@ -25,7 +25,7 @@ $$x_k=f(x_{k-1},u_k)=\begin{bmatrix}x_{k-1}+(v_{bx}\cos\psi-v_{by}\sin\psi)\Delt
 
 To propagate the state covariance matrix $P$, the non-linear motion dynamics are linearized at each time-step using the Jacobian matrix $G_k$:
 
-$$G_k=\frac{\partial f}{\partial x}=\begin{bmatrix}1&0&0&(-v_{bx}\sin\psi-v_{by}\cos\psi)\Delta t\\0&1&0&(v_{bx}\cos\psi-v_{by}\sin\psi)\Delta t\\0&0&1&0\\0&0&0&1\end{bmatrix}$$
+$$G_k=\frac{\partial f}{\partial x}=\begin{bmatrix}1&0&0&(-v_{bx}\sin\psi-v_{by}\cos\psi)\Delta t\\0&1&(v_{bx}\cos\psi-v_{by}\sin\psi)\Delta t\\0&0&1&0\\0&0&0&1\end{bmatrix}$$
 
 ### 2. Measurement Update Loop
 The measurement model assumes the UAV receives corrupted $X, Y, Z$ coordinates from an onboard GPS and Barometer module ($z=[x_{gps},y_{gps},z_{baro}]^T$). The measurement matrix $H$ remains strictly linear:
