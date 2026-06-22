@@ -8,7 +8,9 @@ This repository contains a lightweight, high-performance Python implementation o
 
 ## Performance Evaluation
 The simulation tests the filter against an ascending 3D spiral trajectory. Heavy Gaussian noise is injected into the observation model to simulate real-world sensor degradation (e.g., GPS multi-path errors or barometer drift).
-<img width="3000" height="2400" alt="uav_ekf_3d" src="https://github.com/user-attachments/assets/87a24b37-e1c5-48d9-928d-f364b79581de" />
+
+<img width="3000" height="2400" alt="uav_ekf_3d" src="https://github.com/user-attachments/assets/27481685-91ed-4ee3-ac3b-a2593227f986" />
+
 
 As demonstrated by the tracking results, despite the high variance in raw sensor inputs, the custom EKF architecture dynamically calculates optimal Kalman gains to adhere directly to the actual ground-truth flight pathway.
 
@@ -25,7 +27,7 @@ $$x_k=f(x_{k-1},u_k)=\begin{bmatrix}x_{k-1}+(v_{bx}\cos\psi-v_{by}\sin\psi)\Delt
 
 To propagate the state covariance matrix $P$, the non-linear motion dynamics are linearized at each time-step using the Jacobian matrix $G_k$:
 
-$$G_k=\frac{\partial f}{\partial x}=\begin{bmatrix}1&0&0&(-v_{bx}\sin\psi-v_{by}\cos\psi)\Delta t\\0&1&(v_{bx}\cos\psi-v_{by}\sin\psi)\Delta t\\0&0&1&0\\0&0&0&1\end{bmatrix}$$
+$$G_k=\frac{\partial f}{\partial x}=\begin{bmatrix}1&0&0&(-v_{bx}\sin\psi-v_{by}\cos\psi)\Delta t\\0&1&0&(v_{bx}\cos\psi-v_{by}\sin\psi)\Delta t\\0&0&1&0\\0&0&0&1\end{bmatrix}$$
 
 ### 2. Measurement Update Loop
 The measurement model assumes the UAV receives corrupted $X, Y, Z$ coordinates from an onboard GPS and Barometer module ($z=[x_{gps},y_{gps},z_{baro}]^T$). The measurement matrix $H$ remains strictly linear:
